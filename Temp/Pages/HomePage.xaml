@@ -1,0 +1,69 @@
+﻿<Page
+    x:Class="Temp.Pages.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Temp.Pages"
+    xmlns:usercontrol="using:Temp.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Name="FlipviewTemplate">
+            <Image Source="{Binding name}"></Image>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <FlipView x:Name="flipview" SelectionChanged="flipview_SelectionChanged" Grid.Row="0">
+            <Image Source = "/Assets/sample_01.jpg"/>
+            <Image Source = "/Assets/sample_02.jpg"/>
+            <Image Source = "/Assets/sample_03.jpg"/>
+            <Image Source = "/Assets/sample_04.jpg"/>
+            <Image Source = "/Assets/sample_05.jpg"/>
+            <Image Source = "/Assets/sample_06.jpg"/>
+            <Image Source = "/Assets/sample_07.jpg"/>
+        </FlipView>
+        <Grid Grid.Row="1">
+            <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                
+                <Button Content="Show ContentDialog 3"
+                    Click="ButtonShowContentDialog3_Click"
+                    Margin="0,4" />
+            </StackPanel>
+
+            <ContentDialog x:Name="MyContentDialog"
+                        VerticalAlignment="Stretch"
+                        Title="Lorem Ipsum"
+                        PrimaryButtonText="OK"
+                        IsPrimaryButtonEnabled="{Binding IsChecked, ElementName=checkBoxAgree, Mode=OneWay}"
+                        SecondaryButtonText="Cancel"
+                        MaxWidth="{Binding ActualWidth, ElementName=pageRoot}">
+                <StackPanel>
+                    <TextBlock Text="Aliquam laoreet magna sit amet mauris iaculis ornare. Morbi iaculis augue vel elementum volutpat."
+                            TextWrapping="Wrap" />
+                    <CheckBox x:Name="checkBoxAgree"
+                            Content="Agree" />
+                </StackPanel>
+
+            </ContentDialog>
+        </Grid>
+        <Grid Grid.Row="2" Background="Pink">
+            <usercontrol:MyUserControl1 textblock="Hello World"/>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Button Name="PivotPage" Content="Pivot page"
+                    Click="PivotPage_Click" />
+        </Grid>
+        <Grid Grid.Row="4">
+            <Button Name="LessonPlayerButton" Content="Go to lesson player" HorizontalAlignment="Center" Click="LessonPlayerButton_Click"></Button>
+        </Grid>
+    </Grid>
+</Page>
